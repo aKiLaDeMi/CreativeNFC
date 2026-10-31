@@ -1,43 +1,59 @@
-# Creative NFC — Website
+# Creative NFC
 
-Landing page and online ordering site for **Creative NFC**, a Kosovo-based business selling NFC business cards and stickers. One tap opens menus, Google Reviews, WhatsApp, Wi-Fi, or a business web page — no app required.
+The official website for **Creative NFC** — a studio that sells NFC-enabled business cards and stickers. One tap on a card opens a menu, a Google Review page, a WhatsApp chat, a Wi-Fi network, or a business website. No app required.
 
-**Live site:** _[add your URL here]_
-
----
-
-## ✨ Features
-
-- **Fully responsive** — built mobile-first, tested down to 320px
-- **Dark & light mode** — instant toggle, choice saved in `localStorage`
-- **6 languages** — Shqip, English, Deutsch, Italiano, Français, Español
-- **3D animated NFC card** — drag to rotate, click to simulate a real tap
-- **Live pricing tiers** — unit price drops as quantity rises
-- **Discount code system** — 24h per-code cooldown + per-code expiry dates
-- **Order builder** — pick quantity, tier, discount and extras, then send via WhatsApp
-- **Multiple payment options** — cash on delivery, bank card, bank transfer
-- **Demo phone** — live preview of what the customer sees after a tap
-- **Work carousel** — 3D rotating showcase of past projects
-- **Loading screen** — branded pulse animation on first visit
-- **Toast notifications** — non-blocking feedback for every action
-- **Scroll reveal** — sections fade in as you scroll
-- **No backend required** — everything runs in the browser
+This repo contains the full website: a landing page, an order system with live pricing and discount codes, a demo of what customers see when they tap a card, and a FAQ section — all in three files, no framework, no backend, no build step.
 
 ---
 
-## 🛠 Tech Stack
+## What's inside
 
-| Layer | Tech |
-| --- | --- |
-| Markup | Semantic HTML5 |
-| Styling | Vanilla CSS (custom properties, grid, flexbox) |
-| Logic | Vanilla JavaScript (ES2020, no framework) |
-| Fonts | Sora + Inter (Google Fonts) |
-| Icons | Inline SVG (no icon library) |
-| Backend | None |
+**`index.html`**
+The entire markup. Includes the loading screen, header with theme and language toggles, home page, order page, demo page, FAQ page, footer, order modal, and inline script that applies the saved theme and language before the page paints (so there's no flash).
 
-Zero dependencies. Zero build step. Just open `index.html`.
+**`style.css`**
+All styling in one file. Dark theme by default, light theme toggleable, six-language support baked into the layout, responsive down to 320px. Every animation — the 3D card, the floating price tag, the toast slides, the section reveals — lives here.
+
+**`script.js`**
+All the logic. Pricing tiers, quantity changes, discount validation with a 24-hour cooldown, language switching across six languages, theme switching, order form submission via WhatsApp, and every interactive element on the page.
+
+**`README.md`**
+You're reading it.
 
 ---
 
-## 📁 File Structure
+## What the site does
+
+**Landing page**
+Hero with a draggable 3D NFC card, sections explaining what the cards do (menus, reviews, business cards, Wi-Fi), a three-step "how it works" flow, and a call to action.
+
+**Order page**
+Pick between NFC cards and sticker versions. Adjust the quantity with + / − buttons or preset tiers (5, 10, 20, 50 units). Apply a discount code — the original price shows crossed out, the discount appears below it, and the total updates live. Choose a payment method (cash on delivery, bank card, or bank transfer) and send the order through WhatsApp in one click.
+
+**Demo page**
+Interactive phone mockup that shows what a customer sees after tapping an NFC card: contact buttons, a sample menu, a Google Review prompt, or a business page. Below that, a 3D rotating carousel of past projects and a custom website order form.
+
+**FAQ page**
+Answers to common questions about NFC compatibility, pricing, delivery, and programming. Contact cards at the bottom linking to WhatsApp, Instagram, and email.
+
+---
+
+## Features
+
+- Fully responsive from 320px to 4K
+- Dark and light mode, remembered per visitor
+- Six languages: Albanian, English, German, Italian, French, Spanish
+- Live pricing that recalculates as quantity and discount change
+- 24-hour cooldown on discount codes (per browser) and calendar expiry dates
+- Multiple payment options
+- 3D NFC card you can drag and tap
+- Toast notifications with slide-in animations
+- Scroll reveal on every section
+- Loading screen with brand animation
+- No dependencies, no build tools, no tracking scripts
+
+---
+
+## License
+
+Private project. All rights reserved.
