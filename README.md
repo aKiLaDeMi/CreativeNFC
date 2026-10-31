@@ -54,6 +54,25 @@ Answers to common questions about NFC compatibility, pricing, delivery, and prog
 
 ---
 
-## License
+## Copyright & License
 
-Private project. All rights reserved.
+**© 2026 Creative NFC. All rights reserved.**
+
+This project and all of its contents — including but not limited to the HTML, CSS, JavaScript, design, animations, layout, copy, and images — are the exclusive property of Creative NFC and are protected by copyright law.
+
+**You may not:**
+
+- Copy, reproduce, or redistribute any part of this codebase
+- Modify, adapt, or create derivative works from it
+- Use it as a template, boilerplate, or starting point for another project
+- Publish, host, or deploy it anywhere other than Creative NFC's own official domains
+- Use the Creative NFC name, logo, or branding in any way
+
+**You may:**
+
+- View the source code for personal, non-commercial learning purposes only
+- Reference the general techniques and patterns in your own original work (as permitted by fair use)
+
+Commercial use, redistribution, and republication of any part of this project require explicit written permission from Creative NFC.
+
+For licensing enquiries, contact: **creativenfc34@gmail.com**
