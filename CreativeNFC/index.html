@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script>
-  /* Prevent theme/lang flash on first paint */
   (function(){
     try {
       var t = localStorage.getItem('cnfc_theme') || 'dark';
@@ -23,7 +22,6 @@
 </head>
 <body>
 
-<!-- ===== LOADER ===== -->
 <div id="loader" class="loader" aria-hidden="true">
   <div class="loader-inner">
     <div class="loader-mark">
@@ -40,21 +38,17 @@
   </div>
 </div>
 
-<!-- ===== BACKGROUND DECOR ===== -->
 <div class="bg-glow" aria-hidden="true"></div>
 <div class="blob blob-1" aria-hidden="true"></div>
 <div class="blob blob-2" aria-hidden="true"></div>
 <div class="blob blob-3" aria-hidden="true"></div>
 
-<!-- ===== HEADER ===== -->
 <header>
   <div class="wrap">
     <nav>
       <a class="logo" href="#home" data-goto="home">
         <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-          <path d="M8 9a4 4 0 0 1 8 0"/>
-          <path d="M5.5 6.2a8 8 0 0 1 13 0"/>
-          <path d="M10.4 11.8a1.8 1.8 0 0 1 3.2 0"/>
+          <path d="M8 9a4 4 0 0 1 8 0"/><path d="M5.5 6.2a8 8 0 0 1 13 0"/><path d="M10.4 11.8a1.8 1.8 0 0 1 3.2 0"/>
         </svg>
         Creative <b>NFC</b>
       </a>
@@ -66,8 +60,6 @@
           <a href="#faq" data-nav="faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
           <a class="wa" id="waTop" href="#" target="_blank" rel="noopener">WhatsApp</a>
         </div>
-
-        <!-- Theme toggle -->
         <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
           <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="4"/>
@@ -77,8 +69,6 @@
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
-
-        <!-- Language dropdown -->
         <div class="lang-dropdown">
           <button class="icon-btn lang-toggle" id="langToggle" type="button" aria-label="Language" aria-haspopup="true" aria-expanded="false">
             <span class="lang-label" id="langLabel">SQ</span>
@@ -116,8 +106,6 @@
             </button>
           </div>
         </div>
-
-        <!-- Mobile menu toggle -->
         <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
@@ -127,19 +115,12 @@
 </header>
 
 <main>
-  <!-- ============================================================
-       PAGE: HOME
-  ============================================================ -->
   <div class="page" data-page="home">
     <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <span class="eyebrow" data-i18n="hero_eyebrow">Kartela & stikerë NFC</span>
-          <h1>
-            <span data-i18n="hero_pre">Biznesi yt,</span>
-            <span class="grad" data-i18n="hero_grad">i prekshëm</span>
-            <span data-i18n="hero_post">me një tap.</span>
-          </h1>
+          <h1><span data-i18n="hero_pre">Biznesi yt,</span> <span class="grad" data-i18n="hero_grad">i prekshëm</span> <span data-i18n="hero_post">me një tap.</span></h1>
           <p class="lead" data-i18n="hero_lead">Vizitkarta digjitale, menu, Google Review, WhatsApp dhe faqja e biznesit — të gjitha në një prekje.</p>
           <div class="cta">
             <a class="btn btn-main" href="#porosit" data-goto="porosit" data-i18n="cta_order">Porosit tani</a>
@@ -173,9 +154,7 @@
                           <div class="num">+383 46 300 701</div>
                         </div>
                         <svg class="nfcic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-                          <path d="M8 9a4 4 0 0 1 8 0"/>
-                          <path d="M5.5 6.2a8 8 0 0 1 13 0"/>
-                          <path d="M10.4 11.8a1.8 1.8 0 0 1 3.2 0"/>
+                          <path d="M8 9a4 4 0 0 1 8 0"/><path d="M5.5 6.2a8 8 0 0 1 13 0"/><path d="M10.4 11.8a1.8 1.8 0 0 1 3.2 0"/>
                         </svg>
                       </div>
                     </div>
@@ -190,9 +169,7 @@
                       <div class="row">
                         <small>Menu · Review · Web</small>
                         <svg class="nfcic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-                          <path d="M8 9a4 4 0 0 1 8 0"/>
-                          <path d="M5.5 6.2a8 8 0 0 1 13 0"/>
-                          <path d="M10.4 11.8a1.8 1.8 0 0 1 3.2 0"/>
+                          <path d="M8 9a4 4 0 0 1 8 0"/><path d="M5.5 6.2a8 8 0 0 1 13 0"/><path d="M10.4 11.8a1.8 1.8 0 0 1 3.2 0"/>
                         </svg>
                       </div>
                     </div>
@@ -204,8 +181,7 @@
           <div class="ripple" id="ripple"></div>
           <div class="tphone" aria-hidden="true">
             <div class="tscreen">
-              <b>Creative NFC</b>
-              <i></i><i></i><i></i><i></i><i></i>
+              <b>Creative NFC</b><i></i><i></i><i></i><i></i><i></i>
               <span data-i18n="tap_card">Prek kartelën</span>
             </div>
           </div>
@@ -287,9 +263,6 @@
     </section>
   </div>
 
-  <!-- ============================================================
-       PAGE: POROSIT
-  ============================================================ -->
   <div class="page" data-page="porosit" hidden>
     <section class="page-section" id="porosit">
       <div class="wrap">
@@ -298,7 +271,6 @@
           <h2 data-i18n="order_title">Porosit kartelën NFC</h2>
           <p class="sub" data-i18n="order_sub">Zgjidh sasinë, apliko kod zbritjeje dhe zgjidh mënyrën e pagesës.</p>
         </div>
-
         <div class="ptabs" role="tablist">
           <button class="ptab" data-p="card" type="button" aria-selected="true">
             <span data-i18n="ptab_card_name">Kartela NFC</span>
@@ -309,9 +281,7 @@
             <small data-i18n="ptab_logo_note">+ shtesë sipas sasisë</small>
           </button>
         </div>
-
         <div class="logonote" id="logonote" data-i18n="logonote">Në versionin me logo, logoja shtohet si dizajn custom dhe shkarkohet te WhatsApp.</div>
-
         <div class="buy-shell">
           <div class="price-box">
             <div class="discount-box" id="discountBox">
@@ -322,7 +292,6 @@
                 <button id="removeDiscount" class="discount-btn discount-btn-remove" type="button" hidden data-i18n="discount_remove">Hiq</button>
               </div>
             </div>
-
             <div class="qtybox">
               <button class="qtyctl" id="minus" type="button" aria-label="Decrease">−</button>
               <div class="qty-field">
@@ -330,23 +299,18 @@
               </div>
               <button class="qtyctl" id="plus" type="button" aria-label="Increase">+</button>
             </div>
-
             <div class="totals">
               <div class="line"><span data-i18n="line_unit">Çmimi / copë</span><strong id="unit">0.00 €</strong></div>
               <div class="line"><span data-i18n="line_ship">Posta</span><strong id="ship">0.00 €</strong></div>
-              <div class="line discount" id="discountLine" hidden>
-                <span id="discountLabel">Zbritje</span>
-                <strong id="discountValue">−0.00 €</strong>
-              </div>
+              <div class="line subtotal" id="subtotalLine" hidden><span data-i18n="line_subtotal">Çmimi origjinal</span><strong id="subtotal">0.00 €</strong></div>
+              <div class="line discount" id="discountLine" hidden><span id="discountLabel">Zbritje</span><strong id="discountValue">−0.00 €</strong></div>
               <div class="line total"><span data-i18n="line_total">Totali</span><strong id="total">0.00 €</strong></div>
             </div>
-
             <div class="buy-actions">
               <a class="btn btn-wa" id="waBuy" href="#" target="_blank" rel="noopener" data-i18n="btn_wa_order">Porosit në WhatsApp</a>
               <button class="btn btn-ghost" id="openOrder" type="button" data-i18n="btn_complete">Plotëso porosinë</button>
             </div>
           </div>
-
           <div id="tiers" class="tiers" aria-live="polite"></div>
         </div>
       </div>
@@ -357,39 +321,27 @@
         <div class="section-head">
           <span class="eyebrow" data-i18n="pay_eyebrow">Pagesa</span>
           <h2 data-i18n="pay_title">Mënyrat e pagesës</h2>
-          <p class="sub" data-i18n="pay_sub">Zgjidh mënyrën që të përshtatet më mirë. Totali i porosisë shfaqet më poshtë.</p>
+          <p class="sub" data-i18n="pay_sub">Zgjidh mënyrën që të përshtatet më mirë.</p>
         </div>
-
         <div class="pay-grid">
           <div class="pay-card pay-cash">
             <span class="pay-badge" data-i18n="pay_cash_badge">Rekomanduar</span>
-            <div class="pay-ic">
-              <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg>
-            </div>
+            <div class="pay-ic"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></div>
             <div class="pay-body">
               <h3 data-i18n="pay_cash_t">Cash në dorëzim</h3>
               <p data-i18n="pay_cash_d">Paguan kur ta marrësh porosinë. Nuk kërkohet pagesë paraprake.</p>
             </div>
           </div>
-
           <a class="pay-card pay-card-link" id="payCard" href="#" target="_blank" rel="noopener" hidden>
-            <div class="pay-ic">
-              <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-            </div>
+            <div class="pay-ic"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
             <div class="pay-body">
               <h3 data-i18n="pay_card_t">Kartë bankare</h3>
-              <p data-i18n="pay_card_d">Visa dhe Mastercard — pagesë e sigurt përmes faqes së bankës.</p>
+              <p data-i18n="pay_card_d">Visa dhe Mastercard — pagesë e sigurt.</p>
             </div>
-            <span class="pay-cta">
-              <span data-i18n="pay_card_cta">Paguaj me kartë</span>
-              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
+            <span class="pay-cta"><span data-i18n="pay_card_cta">Paguaj me kartë</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-
           <div class="pay-card" id="payBank" hidden>
-            <div class="pay-ic">
-              <svg viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v8M8 10v8M12 10v8M16 10v8M20 10v8"/></svg>
-            </div>
+            <div class="pay-ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v8M8 10v8M12 10v8M16 10v8M20 10v8"/></svg></div>
             <div class="pay-body">
               <h3 data-i18n="pay_bank_t">Transfertë bankare</h3>
               <p><span data-i18n="pay_bank_iban">IBAN:</span> <strong id="payIban">—</strong></p>
@@ -397,7 +349,6 @@
             <button class="pay-cta" id="payCopy" type="button" data-i18n="pay_bank_cta">Kopjo IBAN</button>
           </div>
         </div>
-
         <p class="pay-total"><span data-i18n="pay_total">Totali i porosisë:</span> <strong id="payTotal">0.00 €</strong></p>
       </div>
     </section>
@@ -406,7 +357,7 @@
       <div class="wrap">
         <div class="cta-inner">
           <h2 data-i18n="order_cta_title">Nuk je i sigurt çfarë të zgjedhësh?</h2>
-          <p data-i18n="order_cta_sub">Na shkruaj në WhatsApp — të ndihmojmë të zgjedhësh kartelën ose stikerin e duhur.</p>
+          <p data-i18n="order_cta_sub">Na shkruaj në WhatsApp — të ndihmojmë.</p>
           <div class="cta">
             <a class="btn btn-wa" id="waHelp" href="#" target="_blank" rel="noopener" data-i18n="order_cta_ask">Pyet në WhatsApp</a>
             <a class="btn btn-ghost" href="#demo" data-goto="demo" data-i18n="cta_demo">Shiko demo</a>
@@ -416,9 +367,6 @@
     </section>
   </div>
 
-  <!-- ============================================================
-       PAGE: DEMO
-  ============================================================ -->
   <div class="page" data-page="demo" hidden>
     <section id="demo">
       <div class="wrap">
@@ -435,7 +383,7 @@
               <button class="tab" data-v="review" type="button" aria-selected="false" data-i18n="tab_review">Review</button>
               <button class="tab" data-v="site" type="button" aria-selected="false" data-i18n="tab_site">Faqe</button>
             </div>
-            <p class="sub" data-i18n="demo_hint">Kliko një tab për të parë si duket kartela, menuja, Google Review ose faqja e biznesit në telefonin e klientit.</p>
+            <p class="sub" data-i18n="demo_hint">Kliko një tab për të parë si duket.</p>
           </div>
           <div class="phone" id="phoneDemo" aria-live="polite"></div>
         </div>
@@ -447,7 +395,7 @@
         <div class="section-head">
           <span class="eyebrow" data-i18n="works_eyebrow">Punët</span>
           <h2 data-i18n="works_title">Faqe web që hapen me një prekje</h2>
-          <p class="sub" data-i18n="works_sub">Shembuj të faqeve që lidhen direkt me kartelën ose stikerin NFC.</p>
+          <p class="sub" data-i18n="works_sub">Shembuj të faqeve që lidhen direkt me kartelën NFC.</p>
         </div>
         <div class="web-grid">
           <div class="demo-text">
@@ -468,7 +416,6 @@
             <div class="ring" id="ring"></div>
           </div>
         </div>
-
         <form id="webForm" class="webform">
           <h3 data-i18n="form_title">Porosi custom për një faqe interneti</h3>
           <div class="field-grid">
@@ -485,7 +432,7 @@
               <input id="wbiz" type="text" data-i18n-placeholder="form_biz_ph" placeholder="Emri i biznesit">
             </label>
             <label class="full"><span data-i18n="form_desc">Çfarë dëshiron</span>
-              <textarea id="wdesc" rows="3" data-i18n-placeholder="form_desc_ph" placeholder="P.sh. një faqe me menu, kontakt dhe WhatsApp"></textarea>
+              <textarea id="wdesc" rows="3" data-i18n-placeholder="form_desc_ph" placeholder="P.sh. një faqe me menu dhe WhatsApp"></textarea>
             </label>
             <label><span data-i18n="form_budget">Buxheti</span>
               <input id="wbudget" type="text" data-i18n-placeholder="form_budget_ph" placeholder="€ ose -">
@@ -506,9 +453,6 @@
     </section>
   </div>
 
-  <!-- ============================================================
-       PAGE: FAQ
-  ============================================================ -->
   <div class="page" data-page="faq" hidden>
     <section id="faq">
       <div class="wrap">
@@ -520,17 +464,17 @@
         <div class="faq">
           <div>
             <h3 data-i18n="faq_biz_h">Për biznesin</h3>
-            <details><summary data-i18n="faq_q1">Punon në çdo telefon?</summary><p data-i18n="faq_a1">Punon në shumicën e iPhone dhe Android me NFC. Klienti e afron telefonin, pa aplikacion.</p></details>
+            <details><summary data-i18n="faq_q1">Punon në çdo telefon?</summary><p data-i18n="faq_a1">Punon në shumicën e iPhone dhe Android me NFC.</p></details>
             <details><summary data-i18n="faq_q2">A ka pagesë mujore?</summary><p data-i18n="faq_a2">Jo. Paguan vetëm një herë kur e blen kartelën ose stikerin.</p></details>
-            <details><summary data-i18n="faq_q3">Çfarë është stikeri NFC me logo?</summary><p data-i18n="faq_a3">Është një stiker me çip NFC dhe logon e biznesit tënd të printuar sipër. Ngjitet në menu, vitrinë, tavolinë ose pas telefonit.</p></details>
-            <details><summary data-i18n="faq_q4">Mund të kem disa veprime në një kartelë?</summary><p data-i18n="faq_a4">Zakonisht një kartelë hap një veprim. Nëse të duhen më shumë, lidhim një faqe të vetme me të gjitha butonat.</p></details>
+            <details><summary data-i18n="faq_q3">Çfarë është stikeri NFC me logo?</summary><p data-i18n="faq_a3">Stiker me çip NFC dhe logon e biznesit tënd të printuar sipër.</p></details>
+            <details><summary data-i18n="faq_q4">Mund të kem disa veprime?</summary><p data-i18n="faq_a4">Zakonisht një kartelë hap një veprim. Për më shumë, lidhim një faqe të vetme.</p></details>
           </div>
           <div>
             <h3 data-i18n="faq_order_h">Për porosinë</h3>
-            <details><summary data-i18n="faq_q5">Kush e programon kartelën?</summary><p data-i18n="faq_a5">Ne. Na tregon çfarë dëshiron të hapë dhe kartela vjen gati për përdorim.</p></details>
-            <details><summary data-i18n="faq_q6">Mund ta ndryshoj linkun më vonë?</summary><p data-i18n="faq_a6">Po, çipi mund të rishkruhet. Na shkruaj në WhatsApp dhe e ndryshojmë.</p></details>
-            <details><summary data-i18n="faq_q7">Si paguhet?</summary><p data-i18n="faq_a7">Cash kur e merr porosinë, me kartë bankare ose transfertë. Nuk kërkohet asnjë pagesë paraprake.</p></details>
-            <details><summary data-i18n="faq_q8">Bëni edhe web faqe?</summary><p data-i18n="faq_a8">Po. Shiko shembujt në faqen e demos dhe plotëso formularin për porosi custom.</p></details>
+            <details><summary data-i18n="faq_q5">Kush e programon?</summary><p data-i18n="faq_a5">Ne. Na tregon çfarë dëshiron dhe kartela vjen gati.</p></details>
+            <details><summary data-i18n="faq_q6">Mund ta ndryshoj linkun?</summary><p data-i18n="faq_a6">Po, çipi mund të rishkruhet. Na shkruaj në WhatsApp.</p></details>
+            <details><summary data-i18n="faq_q7">Si paguhet?</summary><p data-i18n="faq_a7">Cash, me kartë ose transfertë. Pa pagesë paraprake.</p></details>
+            <details><summary data-i18n="faq_q8">Bëni edhe web faqe?</summary><p data-i18n="faq_a8">Po. Shiko shembujt në faqen e demos.</p></details>
           </div>
         </div>
       </div>
@@ -544,22 +488,10 @@
           <p class="sub" data-i18n="contact_sub">Përgjigjemi shpejt në WhatsApp.</p>
         </div>
         <div class="contact-grid">
-          <div class="contact-card">
-            <h4 data-i18n="contact_phone">Telefon</h4>
-            <a href="tel:+38346300701">+383 46 300 701</a>
-          </div>
-          <div class="contact-card">
-            <h4 data-i18n="contact_wa">WhatsApp</h4>
-            <a id="waContact" href="#" target="_blank" rel="noopener" data-i18n="contact_wa_send">Dërgo mesazh</a>
-          </div>
-          <div class="contact-card" id="igContactWrap" hidden>
-            <h4 data-i18n="contact_ig">Instagram</h4>
-            <a id="igContact" href="#" target="_blank" rel="noopener">@creative.nfc</a>
-          </div>
-          <div class="contact-card" id="mailContactWrap" hidden>
-            <h4 data-i18n="contact_mail">Gmail</h4>
-            <a id="mailContact" href="#">...</a>
-          </div>
+          <div class="contact-card"><h4 data-i18n="contact_phone">Telefon</h4><a href="tel:+38346300701">+383 46 300 701</a></div>
+          <div class="contact-card"><h4 data-i18n="contact_wa">WhatsApp</h4><a id="waContact" href="#" target="_blank" rel="noopener" data-i18n="contact_wa_send">Dërgo mesazh</a></div>
+          <div class="contact-card" id="igContactWrap" hidden><h4 data-i18n="contact_ig">Instagram</h4><a id="igContact" href="#" target="_blank" rel="noopener">@creative.nfc</a></div>
+          <div class="contact-card" id="mailContactWrap" hidden><h4 data-i18n="contact_mail">Gmail</h4><a id="mailContact" href="#">...</a></div>
         </div>
       </div>
     </section>
@@ -568,7 +500,7 @@
       <div class="wrap">
         <div class="cta-inner">
           <h2 data-i18n="cta_final_title">Gati për të porositur?</h2>
-          <p data-i18n="cta_final_sub">Zgjidh sasinë dhe dërgo porosinë në WhatsApp në më pak se një minutë.</p>
+          <p data-i18n="cta_final_sub">Zgjidh sasinë dhe dërgo porosinë në WhatsApp.</p>
           <div class="cta">
             <a class="btn btn-main" href="#porosit" data-goto="porosit" data-i18n="cta_order">Porosit tani</a>
             <a class="btn btn-ghost" href="#demo" data-goto="demo" data-i18n="cta_demo">Shiko demo</a>
@@ -579,44 +511,25 @@
   </div>
 </main>
 
-<!-- ===== FOOTER ===== -->
 <footer>
   <div class="wrap">
     <div class="fgrid">
       <div class="fbrand">
         <a class="logo" href="#home" data-goto="home">
           <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-            <path d="M8 9a4 4 0 0 1 8 0"/>
-            <path d="M5.5 6.2a8 8 0 0 1 13 0"/>
-            <path d="M10.4 11.8a1.8 1.8 0 0 1 3.2 0"/>
+            <path d="M8 9a4 4 0 0 1 8 0"/><path d="M5.5 6.2a8 8 0 0 1 13 0"/><path d="M10.4 11.8a1.8 1.8 0 0 1 3.2 0"/>
           </svg>
           Creative <b>NFC</b>
         </a>
-        <p data-i18n="footer_brand_p">Kartela dhe stikerë NFC që e bëjnë biznesin të prekshëm. Një tap, të gjitha veprimet.</p>
+        <p data-i18n="footer_brand_p">Kartela dhe stikerë NFC që e bëjnë biznesin të prekshëm.</p>
       </div>
       <div class="fcol">
         <h4 data-i18n="footer_contact_h">Kontakt</h4>
         <div class="flinks">
-          <a class="flink" href="tel:+38346300701">
-            <svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/></svg>
-            +383 46 300 701
-          </a>
-          <a class="flink" id="waFoot" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5Z"/></svg>
-            WhatsApp
-          </a>
-          <div id="igWrap" hidden>
-            <a class="flink" id="igFoot" href="#" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
-              Instagram
-            </a>
-          </div>
-          <div id="mailWrap" hidden>
-            <a class="flink" id="mailFoot" href="#">
-              <svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
-              <span id="mailText">Gmail</span>
-            </a>
-          </div>
+          <a class="flink" href="tel:+38346300701"><svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/></svg>+383 46 300 701</a>
+          <a class="flink" id="waFoot" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5Z"/></svg>WhatsApp</a>
+          <div id="igWrap" hidden><a class="flink" id="igFoot" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a></div>
+          <div id="mailWrap" hidden><a class="flink" id="mailFoot" href="#"><svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg><span id="mailText">Gmail</span></a></div>
         </div>
       </div>
       <div class="fcol">
@@ -635,7 +548,6 @@
   </div>
 </footer>
 
-<!-- ===== ORDER MODAL ===== -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="inner">
     <button class="close" id="closeModal" aria-label="Close">×</button>
@@ -644,10 +556,7 @@
     <form id="orderForm">
       <label data-i18n="modal_actions">Çfarë dëshiron të hapë?</label>
       <div class="checks" id="checks"></div>
-      <label class="check-single">
-        <input type="checkbox" id="customDesign">
-        <span data-i18n="modal_design">Dua dizajn custom me logon time</span>
-      </label>
+      <label class="check-single"><input type="checkbox" id="customDesign"> <span data-i18n="modal_design">Dua dizajn custom me logon time</span></label>
       <label for="links" data-i18n="modal_links">Linqet ose të dhënat</label>
       <textarea id="links" rows="3" data-i18n-placeholder="modal_links_ph" placeholder="P.sh. instagram.com/biznesi..."></textarea>
       <label for="biz" data-i18n="modal_biz">Emri i biznesit</label>

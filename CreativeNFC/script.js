@@ -1,6 +1,10 @@
 /* ============================================================
+   CREATIVE NFC — script.js
+============================================================ */
+
+/* ============================================================
    CONFIG
-   ============================================================ */
+============================================================ */
 const INSTAGRAM = "creative.nfc";
 const GMAIL = "creativenfc34@gmail.com";
 const GOOGLE_REVIEW_URL = "";
@@ -10,11 +14,11 @@ const WHATSAPP = "38346300701";
 const BRAND = "Creative NFC";
 const PAYMENT_URL = "";
 const BANK_IBAN = "";
-const CODE_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
+const CODE_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 /* ============================================================
    TRANSLATIONS
-   ============================================================ */
+============================================================ */
 const T = {
   sq: {
     nav_home:"Kryefaqja", nav_order:"Porosit", nav_demo:"Demo", nav_faq:"FAQ",
@@ -37,37 +41,37 @@ const T = {
     ptab_card_name:"Kartela NFC", ptab_card_price:"15 € / 1 copë", ptab_logo_name:"Stikerë me logo", ptab_logo_note:"+ shtesë sipas sasisë",
     logonote:"Në versionin me logo, logoja shtohet si dizajn custom dhe shkarkohet te WhatsApp.",
     discount_label:"Kodi i zbritjes", discount_apply:"Zbato", discount_remove:"Hiq",
-    line_unit:"Çmimi / copë", line_ship:"Posta", line_total:"Totali", line_free:"Falas",
+    line_subtotal:"Çmimi origjinal", line_unit:"Çmimi / copë", line_ship:"Posta", line_total:"Totali", line_free:"Falas",
     btn_wa_order:"Porosit në WhatsApp", btn_complete:"Plotëso porosinë",
-    pay_eyebrow:"Pagesa", pay_title:"Mënyrat e pagesës", pay_sub:"Zgjidh mënyrën që të përshtatet më mirë. Totali i porosisë shfaqet më poshtë.",
+    pay_eyebrow:"Pagesa", pay_title:"Mënyrat e pagesës", pay_sub:"Zgjidh mënyrën që të përshtatet më mirë.",
     pay_cash_badge:"Rekomanduar", pay_cash_t:"Cash në dorëzim", pay_cash_d:"Paguan kur ta marrësh porosinë. Nuk kërkohet pagesë paraprake.",
-    pay_card_t:"Kartë bankare", pay_card_d:"Visa dhe Mastercard — pagesë e sigurt përmes faqes së bankës.", pay_card_cta:"Paguaj me kartë",
+    pay_card_t:"Kartë bankare", pay_card_d:"Visa dhe Mastercard — pagesë e sigurt.", pay_card_cta:"Paguaj me kartë",
     pay_bank_t:"Transfertë bankare", pay_bank_iban:"IBAN:", pay_bank_cta:"Kopjo IBAN", pay_total:"Totali i porosisë:",
-    order_cta_title:"Nuk je i sigurt çfarë të zgjedhësh?", order_cta_sub:"Na shkruaj në WhatsApp — të ndihmojmë të zgjedhësh kartelën ose stikerin e duhur.", order_cta_ask:"Pyet në WhatsApp",
+    order_cta_title:"Nuk je i sigurt çfarë të zgjedhësh?", order_cta_sub:"Na shkruaj në WhatsApp — të ndihmojmë.", order_cta_ask:"Pyet në WhatsApp",
     demo_eyebrow:"Demo", demo_title:"Si duket pas një tap", demo_sub:"Shembull i kartelës dhe butonave që hapen në telefonin e klientit.",
     tab_card:"Kartela", tab_menu:"Menu", tab_review:"Review", tab_site:"Faqe",
-    demo_hint:"Kliko një tab për të parë si duket kartela, menuja, Google Review ose faqja e biznesit në telefonin e klientit.",
-    works_eyebrow:"Punët", works_title:"Faqe web që hapen me një prekje", works_sub:"Shembuj të faqeve që lidhen direkt me kartelën ose stikerin NFC.",
+    demo_hint:"Kliko një tab për të parë si duket.",
+    works_eyebrow:"Punët", works_title:"Faqe web që hapen me një prekje", works_sub:"Shembuj të faqeve që lidhen direkt me kartelën NFC.",
     btn_ig_works:"Shiko punët në Instagram", btn_want_similar:"Dua një faqe të ngjashme",
     form_title:"Porosi custom për një faqe interneti",
     form_type:"Lloji", form_biz:"Biznesi", form_desc:"Çfarë dëshiron", form_budget:"Buxheti", form_deadline:"Afati", form_name:"Emri", form_phone:"Telefoni", form_submit:"Dërgo në WhatsApp",
-    form_biz_ph:"Emri i biznesit", form_desc_ph:"P.sh. një faqe me menu, kontakt dhe WhatsApp", form_budget_ph:"€ ose -", form_deadline_ph:"P.sh. 2 javë",
+    form_biz_ph:"Emri i biznesit", form_desc_ph:"P.sh. një faqe me menu dhe WhatsApp", form_budget_ph:"€ ose -", form_deadline_ph:"P.sh. 2 javë",
     form_type_menu:"Menu online", form_type_shop:"Dyqan online", form_type_portfolio:"Portfolio", form_type_biz:"Faqe biznesi", form_type_landing:"Landing page",
     faq_eyebrow:"FAQ", faq_title:"Pyetje të shpeshta", faq_sub:"Gjërat që pyesin më shpesh bizneset.",
     faq_biz_h:"Për biznesin",
-    faq_q1:"Punon në çdo telefon?", faq_a1:"Punon në shumicën e iPhone dhe Android me NFC. Klienti e afron telefonin, pa aplikacion.",
+    faq_q1:"Punon në çdo telefon?", faq_a1:"Punon në shumicën e iPhone dhe Android me NFC.",
     faq_q2:"A ka pagesë mujore?", faq_a2:"Jo. Paguan vetëm një herë kur e blen kartelën ose stikerin.",
-    faq_q3:"Çfarë është stikeri NFC me logo?", faq_a3:"Është një stiker me çip NFC dhe logon e biznesit tënd të printuar sipër. Ngjitet në menu, vitrinë, tavolinë ose pas telefonit.",
-    faq_q4:"Mund të kem disa veprime në një kartelë?", faq_a4:"Zakonisht një kartelë hap një veprim. Nëse të duhen më shumë, lidhim një faqe të vetme me të gjitha butonat.",
+    faq_q3:"Çfarë është stikeri NFC me logo?", faq_a3:"Stiker me çip NFC dhe logon e biznesit tënd të printuar sipër.",
+    faq_q4:"Mund të kem disa veprime?", faq_a4:"Zakonisht një kartelë hap një veprim. Për më shumë, lidhim një faqe të vetme.",
     faq_order_h:"Për porosinë",
-    faq_q5:"Kush e programon kartelën?", faq_a5:"Ne. Na tregon çfarë dëshiron të hapë dhe kartela vjen gati për përdorim.",
-    faq_q6:"Mund ta ndryshoj linkun më vonë?", faq_a6:"Po, çipi mund të rishkruhet. Na shkruaj në WhatsApp dhe e ndryshojmë.",
-    faq_q7:"Si paguhet?", faq_a7:"Cash kur e merr porosinë, me kartë bankare ose transfertë. Nuk kërkohet asnjë pagesë paraprake.",
-    faq_q8:"Bëni edhe web faqe?", faq_a8:"Po. Shiko shembujt në faqen e demos dhe plotëso formularin për porosi custom.",
+    faq_q5:"Kush e programon?", faq_a5:"Ne. Na tregon çfarë dëshiron dhe kartela vjen gati.",
+    faq_q6:"Mund ta ndryshoj linkun?", faq_a6:"Po, çipi mund të rishkruhet. Na shkruaj në WhatsApp.",
+    faq_q7:"Si paguhet?", faq_a7:"Cash, me kartë ose transfertë. Pa pagesë paraprake.",
+    faq_q8:"Bëni edhe web faqe?", faq_a8:"Po. Shiko shembujt në faqen e demos.",
     contact_eyebrow:"Kontakt", contact_title:"Na kontakto", contact_sub:"Përgjigjemi shpejt në WhatsApp.",
     contact_phone:"Telefon", contact_wa:"WhatsApp", contact_ig:"Instagram", contact_mail:"Gmail", contact_wa_send:"Dërgo mesazh",
-    cta_final_title:"Gati për të porositur?", cta_final_sub:"Zgjidh sasinë dhe dërgo porosinë në WhatsApp në më pak se një minutë.",
-    footer_brand_p:"Kartela dhe stikerë NFC që e bëjnë biznesin të prekshëm. Një tap, të gjitha veprimet.",
+    cta_final_title:"Gati për të porositur?", cta_final_sub:"Zgjidh sasinë dhe dërgo porosinë në WhatsApp.",
+    footer_brand_p:"Kartela dhe stikerë NFC që e bëjnë biznesin të prekshëm.",
     footer_contact_h:"Kontakt", footer_info_h:"Informacion",
     footer_delivery:"Dërgesë në gjithë Kosovën", footer_cash:"Cash pas dorëzimit", footer_no_monthly:"Pa pagesë mujore",
     footer_copy:"© 2026 Creative NFC. Të gjitha të drejtat e rezervuara.", footer_credit:"Krijuar me kujdes.",
@@ -120,16 +124,16 @@ const T = {
     ptab_card_name:"NFC card", ptab_card_price:"15 € / 1 pc", ptab_logo_name:"Stickers with logo", ptab_logo_note:"+ extra per quantity",
     logonote:"In the logo version, the logo is added as a custom design and sent via WhatsApp.",
     discount_label:"Discount code", discount_apply:"Apply", discount_remove:"Remove",
-    line_unit:"Price / pc", line_ship:"Shipping", line_total:"Total", line_free:"Free",
+    line_subtotal:"Original price", line_unit:"Price / pc", line_ship:"Shipping", line_total:"Total", line_free:"Free",
     btn_wa_order:"Order on WhatsApp", btn_complete:"Complete order",
     pay_eyebrow:"Payment", pay_title:"Payment methods", pay_sub:"Choose the method that suits you best.",
     pay_cash_badge:"Recommended", pay_cash_t:"Cash on delivery", pay_cash_d:"Pay when you receive the order. No upfront payment.",
     pay_card_t:"Bank card", pay_card_d:"Visa and Mastercard — secure payment.", pay_card_cta:"Pay by card",
     pay_bank_t:"Bank transfer", pay_bank_iban:"IBAN:", pay_bank_cta:"Copy IBAN", pay_total:"Order total:",
-    order_cta_title:"Not sure what to pick?", order_cta_sub:"Message us on WhatsApp — we'll help you pick the right card or sticker.", order_cta_ask:"Ask on WhatsApp",
+    order_cta_title:"Not sure what to pick?", order_cta_sub:"Message us on WhatsApp — we'll help you.", order_cta_ask:"Ask on WhatsApp",
     demo_eyebrow:"Demo", demo_title:"What it looks like after a tap", demo_sub:"Sample of the card and buttons that open on the customer's phone.",
     tab_card:"Card", tab_menu:"Menu", tab_review:"Review", tab_site:"Page",
-    demo_hint:"Click a tab to see what the card, menu, Google Review or business page looks like on the customer's phone.",
+    demo_hint:"Click a tab to see what it looks like.",
     works_eyebrow:"Work", works_title:"Web pages that open with a tap", works_sub:"Examples of pages that link directly from the NFC card.",
     btn_ig_works:"See the work on Instagram", btn_want_similar:"I want a similar page",
     form_title:"Custom order for a website",
@@ -138,19 +142,19 @@ const T = {
     form_type_menu:"Online menu", form_type_shop:"Online store", form_type_portfolio:"Portfolio", form_type_biz:"Business page", form_type_landing:"Landing page",
     faq_eyebrow:"FAQ", faq_title:"Frequently asked questions", faq_sub:"The things businesses ask most often.",
     faq_biz_h:"For the business",
-    faq_q1:"Works on every phone?", faq_a1:"Works on most iPhones and Androids with NFC. The customer brings their phone close — no app needed.",
+    faq_q1:"Works on every phone?", faq_a1:"Works on most iPhones and Androids with NFC.",
     faq_q2:"Is there a monthly fee?", faq_a2:"No. You pay only once when you buy the card or sticker.",
-    faq_q3:"What is the NFC sticker with logo?", faq_a3:"A sticker with an NFC chip and your business logo printed on top. Sticks to the menu, window, table or back of a phone.",
-    faq_q4:"Can I have several actions on one card?", faq_a4:"Usually one card opens one action. If you need more, we link a single page with all buttons.",
+    faq_q3:"What is the NFC sticker with logo?", faq_a3:"A sticker with an NFC chip and your business logo printed on top.",
+    faq_q4:"Can I have several actions?", faq_a4:"Usually one card opens one action. For more, we link a single page with all buttons.",
     faq_order_h:"For the order",
-    faq_q5:"Who programs the card?", faq_a5:"We do. Tell us what you want it to open and it arrives ready to use.",
-    faq_q6:"Can I change the link later?", faq_a6:"Yes, the chip can be rewritten. Message us on WhatsApp and we'll change it.",
-    faq_q7:"How do you pay?", faq_a7:"Cash on delivery, by bank card or bank transfer. No upfront payment required.",
-    faq_q8:"Do you also build websites?", faq_a8:"Yes. See the examples on the demo page and fill out the custom order form.",
+    faq_q5:"Who programs the card?", faq_a5:"We do. Tell us what you want and it arrives ready.",
+    faq_q6:"Can I change the link later?", faq_a6:"Yes, the chip can be rewritten. Message us on WhatsApp.",
+    faq_q7:"How do you pay?", faq_a7:"Cash, by card or bank transfer. No upfront payment.",
+    faq_q8:"Do you also build websites?", faq_a8:"Yes. See the examples on the demo page.",
     contact_eyebrow:"Contact", contact_title:"Contact us", contact_sub:"We reply quickly on WhatsApp.",
     contact_phone:"Phone", contact_wa:"WhatsApp", contact_ig:"Instagram", contact_mail:"Gmail", contact_wa_send:"Send message",
-    cta_final_title:"Ready to order?", cta_final_sub:"Pick a quantity and send your order on WhatsApp in under a minute.",
-    footer_brand_p:"NFC cards and stickers that make your business touchable. One tap, all actions.",
+    cta_final_title:"Ready to order?", cta_final_sub:"Pick a quantity and send your order on WhatsApp.",
+    footer_brand_p:"NFC cards and stickers that make your business touchable.",
     footer_contact_h:"Contact", footer_info_h:"Information",
     footer_delivery:"Delivery across Kosovo", footer_cash:"Cash on delivery", footer_no_monthly:"No monthly fee",
     footer_copy:"© 2026 Creative NFC. All rights reserved.", footer_credit:"Crafted with care.",
@@ -203,7 +207,7 @@ const T = {
     ptab_card_name:"NFC-Karte", ptab_card_price:"15 € / 1 Stück", ptab_logo_name:"Aufkleber mit Logo", ptab_logo_note:"+ Aufpreis je Menge",
     logonote:"In der Logo-Version wird das Logo als Design hinzugefügt und per WhatsApp gesendet.",
     discount_label:"Rabattcode", discount_apply:"Anwenden", discount_remove:"Entfernen",
-    line_unit:"Preis / Stück", line_ship:"Versand", line_total:"Gesamt", line_free:"Kostenlos",
+    line_subtotal:"Originalpreis", line_unit:"Preis / Stück", line_ship:"Versand", line_total:"Gesamt", line_free:"Kostenlos",
     btn_wa_order:"Per WhatsApp bestellen", btn_complete:"Bestellung abschließen",
     pay_eyebrow:"Zahlung", pay_title:"Zahlungsmethoden", pay_sub:"Wählen Sie die passende Methode.",
     pay_cash_badge:"Empfohlen", pay_cash_t:"Barzahlung bei Lieferung", pay_cash_d:"Sie zahlen, wenn Sie die Bestellung erhalten.",
@@ -286,7 +290,7 @@ const T = {
     ptab_card_name:"Tessera NFC", ptab_card_price:"15 € / 1 pz", ptab_logo_name:"Adesivi con logo", ptab_logo_note:"+ extra per quantità",
     logonote:"Nella versione con logo, il logo viene aggiunto come design personalizzato e inviato su WhatsApp.",
     discount_label:"Codice sconto", discount_apply:"Applica", discount_remove:"Rimuovi",
-    line_unit:"Prezzo / pz", line_ship:"Spedizione", line_total:"Totale", line_free:"Gratis",
+    line_subtotal:"Prezzo originale", line_unit:"Prezzo / pz", line_ship:"Spedizione", line_total:"Totale", line_free:"Gratis",
     btn_wa_order:"Ordina su WhatsApp", btn_complete:"Completa ordine",
     pay_eyebrow:"Pagamento", pay_title:"Metodi di pagamento", pay_sub:"Scegli il metodo più adatto a te.",
     pay_cash_badge:"Consigliato", pay_cash_t:"Pagamento alla consegna", pay_cash_d:"Paghi quando ricevi l'ordine.",
@@ -369,7 +373,7 @@ const T = {
     ptab_card_name:"Carte NFC", ptab_card_price:"15 € / 1 pièce", ptab_logo_name:"Stickers avec logo", ptab_logo_note:"+ supplément selon quantité",
     logonote:"Dans la version avec logo, le logo est ajouté comme design personnalisé et envoyé sur WhatsApp.",
     discount_label:"Code promo", discount_apply:"Appliquer", discount_remove:"Retirer",
-    line_unit:"Prix / pièce", line_ship:"Livraison", line_total:"Total", line_free:"Gratuit",
+    line_subtotal:"Prix original", line_unit:"Prix / pièce", line_ship:"Livraison", line_total:"Total", line_free:"Gratuit",
     btn_wa_order:"Commander sur WhatsApp", btn_complete:"Finaliser la commande",
     pay_eyebrow:"Paiement", pay_title:"Modes de paiement", pay_sub:"Choisissez la méthode qui vous convient.",
     pay_cash_badge:"Recommandé", pay_cash_t:"Paiement à la livraison", pay_cash_d:"Vous payez à la réception.",
@@ -452,7 +456,7 @@ const T = {
     ptab_card_name:"Tarjeta NFC", ptab_card_price:"15 € / 1 ud", ptab_logo_name:"Stickers con logo", ptab_logo_note:"+ extra según cantidad",
     logonote:"En la versión con logo, el logo se añade como diseño personalizado y se envía por WhatsApp.",
     discount_label:"Código de descuento", discount_apply:"Aplicar", discount_remove:"Quitar",
-    line_unit:"Precio / ud", line_ship:"Envío", line_total:"Total", line_free:"Gratis",
+    line_subtotal:"Precio original", line_unit:"Precio / ud", line_ship:"Envío", line_total:"Total", line_free:"Gratis",
     btn_wa_order:"Pedir en WhatsApp", btn_complete:"Completar pedido",
     pay_eyebrow:"Pago", pay_title:"Métodos de pago", pay_sub:"Elige el método que más te convenga.",
     pay_cash_badge:"Recomendado", pay_cash_t:"Pago contra entrega", pay_cash_d:"Pagas al recibir el pedido.",
@@ -516,19 +520,9 @@ const T = {
   }
 };
 
-/* Demo phone labels per language (used by buildViews) */
-const DEMO_LABELS = {
-  sq: { role:"Dizajn & NFC", order:"Porosit NFC në WhatsApp", save:"Ruaj kontaktin", call:"Telefono", web:"Krijim web faqesh", works:"Shiko punët", review:"Vlerëso në Google", menuRole:"Menuja", coffee:"Kafe", food:"Ushqim", drinks:"Pije", lemonade:"Limonadë", water:"Ujë", reviewMsg:"Na lër një vlerësim. Merr vetëm një minutë.", pageTitle:"Faqja e biznesit", pageRole:"Hapet direkt në shfletues", pageCenter:"Çdo link që zgjedh: faqe, katalog, dyqan online ose portfolio.", pageOpen:"Hap faqen", pageProducts:"Shiko produktet" },
-  en: { role:"Design & NFC", order:"Order NFC on WhatsApp", save:"Save contact", call:"Call", web:"Website build", works:"See the work", review:"Review on Google", menuRole:"Menu", coffee:"Coffee", food:"Food", drinks:"Drinks", lemonade:"Lemonade", water:"Water", reviewMsg:"Leave us a review. Takes just a minute.", pageTitle:"Business page", pageRole:"Opens in the browser", pageCenter:"Any link you choose: page, catalog, online store or portfolio.", pageOpen:"Open the page", pageProducts:"See products" },
-  de: { role:"Design & NFC", order:"NFC per WhatsApp bestellen", save:"Kontakt speichern", call:"Anrufen", web:"Webseite erstellen", works:"Arbeiten ansehen", review:"Auf Google bewerten", menuRole:"Speisekarte", coffee:"Kaffee", food:"Essen", drinks:"Getränke", lemonade:"Limonade", water:"Wasser", reviewMsg:"Bewerten Sie uns. Dauert nur eine Minute.", pageTitle:"Firmenseite", pageRole:"Öffnet im Browser", pageCenter:"Jeder Link: Seite, Katalog, Shop oder Portfolio.", pageOpen:"Seite öffnen", pageProducts:"Produkte ansehen" },
-  it: { role:"Design & NFC", order:"Ordina NFC su WhatsApp", save:"Salva contatto", call:"Chiama", web:"Crea sito web", works:"Vedi i lavori", review:"Recensisci su Google", menuRole:"Menu", coffee:"Caffè", food:"Cibo", drinks:"Bevande", lemonade:"Limonata", water:"Acqua", reviewMsg:"Lasciaci una recensione. Ci vuole un minuto.", pageTitle:"Pagina aziendale", pageRole:"Si apre nel browser", pageCenter:"Qualsiasi link: pagina, catalogo, negozio o portfolio.", pageOpen:"Apri la pagina", pageProducts:"Vedi prodotti" },
-  fr: { role:"Design & NFC", order:"Commander NFC sur WhatsApp", save:"Enregistrer le contact", call:"Appeler", web:"Créer un site", works:"Voir les travaux", review:"Évaluer sur Google", menuRole:"Menu", coffee:"Café", food:"Nourriture", drinks:"Boissons", lemonade:"Limonade", water:"Eau", reviewMsg:"Laissez-nous un avis. Une minute suffit.", pageTitle:"Page professionnelle", pageRole:"S'ouvre dans le navigateur", pageCenter:"N'importe quel lien : page, catalogue, boutique ou portfolio.", pageOpen:"Ouvrir la page", pageProducts:"Voir les produits" },
-  es: { role:"Diseño & NFC", order:"Pedir NFC por WhatsApp", save:"Guardar contacto", call:"Llamar", web:"Crear sitio web", works:"Ver trabajos", review:"Reseñar en Google", menuRole:"Menú", coffee:"Café", food:"Comida", drinks:"Bebidas", lemonade:"Limonada", water:"Agua", reviewMsg:"Déjanos una reseña. Solo un minuto.", pageTitle:"Página del negocio", pageRole:"Se abre en el navegador", pageCenter:"Cualquier enlace: página, catálogo, tienda o portfolio.", pageOpen:"Abrir página", pageProducts:"Ver productos" }
-};
-
 /* ============================================================
    DISCOUNTS
-   ============================================================ */
+============================================================ */
 const DISCOUNTS = {
   "TAP10":       { type:"percent", value:10, label:{sq:"10% — porosia e parë", en:"10% — first order"}, expires:"2027-06-30" },
   "TAP15":       { type:"percent", value:15, label:{sq:"15% — porosia e parë", en:"15% — first order"}, expires:"2027-06-30" },
@@ -608,20 +602,27 @@ const DISCOUNTS = {
 };
 
 /* ============================================================
-   PRODUCTS
-   ============================================================ */
+   PRODUCTS & ACTIONS
+============================================================ */
 const PRODUCTS = {
-  card: { nameKey:"product_card", tiers: [
-    { q:1,  total:15,  badgeKey:"" },
-    { q:5,  total:60,  badgeKey:"tier_most_sold" },
-    { q:10, total:100, badgeKey:"" },
-    { q:20, total:160, badgeKey:"" },
-    { q:50, total:300, badgeKey:"tier_wholesale" }
-  ]},
+  card: {
+    nameKey:"product_card",
+    tiers: [
+      { q:1,  total:15,  badgeKey:"" },
+      { q:5,  total:60,  badgeKey:"tier_most_sold" },
+      { q:10, total:100, badgeKey:"" },
+      { q:20, total:160, badgeKey:"" },
+      { q:50, total:300, badgeKey:"tier_wholesale" }
+    ]
+  },
   logo: { nameKey:"product_logo", logo:true, tiers: [] }
 };
 const LOGO_EXTRA = [3, 2.5, 2, 1.5, 1];
-PRODUCTS.logo.tiers = PRODUCTS.card.tiers.map((t, i) => ({ q: t.q, total: t.total + LOGO_EXTRA[i] * t.q, badgeKey: t.badgeKey }));
+PRODUCTS.logo.tiers = PRODUCTS.card.tiers.map((t, i) => ({
+  q: t.q,
+  total: t.total + LOGO_EXTRA[i] * t.q,
+  badgeKey: t.badgeKey
+}));
 
 const FREE_SHIP_FROM_EUR = 30;
 const SHIPPING = 2;
@@ -636,28 +637,25 @@ const ACTIONS = {
 };
 
 /* ============================================================
-   STATE
-   ============================================================ */
+   STATE & HELPERS
+============================================================ */
 let currentLang = (() => { try { return localStorage.getItem('cnfc_lang') || 'sq'; } catch(_) { return 'sq'; } })();
 let currentTheme = (() => { try { return localStorage.getItem('cnfc_theme') || 'dark'; } catch(_) { return 'dark'; } })();
 let currentProduct = "card";
 let appliedDiscount = null;
 
-/* ============================================================
-   HELPERS
-   ============================================================ */
 const $ = id => document.getElementById(id);
 const eur = n => n.toFixed(2) + " €";
 const t = (key) => (T[currentLang] && T[currentLang][key]) || (T.sq[key]) || key;
 const tf = (key, vars) => {
   let s = t(key);
-  if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+  if (vars) for (const k in vars) s = s.replace(new RegExp('\\{' + k + '\\}','g'), vars[k]);
   return s;
 };
 const waLink = (text) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
 const setHref = (id, url) => { const el = $(id); if (el) el.href = url; };
 
-const ICONS = {
+const ico = {
   chat: '<svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5Z"/></svg>',
   user: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>',
   phone: '<svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/></svg>',
@@ -668,8 +666,8 @@ const ICONS = {
 };
 
 /* ============================================================
-   TOAST
-   ============================================================ */
+   TOAST SYSTEM
+============================================================ */
 const TOAST_ICONS = {
   success: '<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>',
   error: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>',
@@ -715,8 +713,8 @@ function toast(type, title, message, duration = 4200) {
 }
 
 /* ============================================================
-   DISCOUNT HELPERS
-   ============================================================ */
+   DISCOUNT HELPERS (24h cooldown)
+============================================================ */
 function getUsageMap() {
   try { return JSON.parse(localStorage.getItem('cnfc_code_usage') || '{}'); }
   catch (_) { return {}; }
@@ -734,9 +732,7 @@ function markCodeUsed(code) {
   try { localStorage.setItem('cnfc_code_usage', JSON.stringify(map)); } catch (_) {}
 }
 function formatCooldownTime(ms) {
-  const days = Math.ceil(ms / (24 * 60 * 60 * 1000));
-  if (days >= 1) return days === 1 ? t('time_day') : tf('time_days', { n: days });
-  const hours = Math.max(1, Math.ceil(ms / (60 * 60 * 1000)));
+  const hours = Math.max(1, Math.ceil(ms / (60*60*1000)));
   return hours === 1 ? t('time_hour') : tf('time_hours', { n: hours });
 }
 function isExpired(discount) {
@@ -763,25 +759,22 @@ function getDiscountLabel(d) {
 
 /* ============================================================
    SEND ORDER
-   ============================================================ */
+============================================================ */
 function sendOrder(msg) {
   const fallback = () => {
     window.open(waLink(msg), '_blank');
     toast('info', t('toast_wa_title'), t('toast_wa_msg'));
   };
   const jobs = [];
-  if (NTFY_TOPIC) {
-    jobs.push(fetch('https://ntfy.sh/' + encodeURIComponent(NTFY_TOPIC), {
-      method: 'POST', body: msg,
-      headers: { 'Title': 'Order - Creative NFC', 'Priority': 'high', 'Tags': 'shopping_cart' }
-    }).then(r => { if (!r.ok) throw new Error('ntfy'); }));
-  }
-  if (CALLMEBOT_KEY) {
-    jobs.push(fetch(
-      `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent('+' + WHATSAPP)}&text=${encodeURIComponent(msg)}&apikey=${encodeURIComponent(CALLMEBOT_KEY)}`,
-      { mode: 'no-cors' }
-    ));
-  }
+  if (NTFY_TOPIC) jobs.push(fetch('https://ntfy.sh/' + encodeURIComponent(NTFY_TOPIC), {
+    method:'POST',
+    body:msg,
+    headers:{ 'Title':'Order - Creative NFC','Priority':'high','Tags':'shopping_cart' }
+  }).then(r => { if (!r.ok) throw new Error('ntfy'); }));
+  if (CALLMEBOT_KEY) jobs.push(fetch(
+    `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent('+' + WHATSAPP)}&text=${encodeURIComponent(msg)}&apikey=${encodeURIComponent(CALLMEBOT_KEY)}`,
+    { mode:'no-cors' }
+  ));
   if (!jobs.length) { fallback(); return; }
   Promise.allSettled(jobs).then(res => {
     if (res.some(r => r.status === 'fulfilled')) toast('success', t('toast_sent_title'), t('toast_sent_msg'));
@@ -801,11 +794,8 @@ function copyText(text) {
   if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
   return new Promise((resolve, reject) => {
     const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
     try { document.execCommand('copy'); resolve(); }
     catch (e) { reject(e); }
     finally { document.body.removeChild(ta); }
@@ -813,49 +803,88 @@ function copyText(text) {
 }
 
 /* ============================================================
-   DEMO PHONE VIEWS
-   ============================================================ */
+   DEMO VIEWS
+============================================================ */
 function buildViews() {
-  const L = DEMO_LABELS[currentLang] || DEMO_LABELS.sq;
+  const roleMap = {sq:"Dizajn & NFC",en:"Design & NFC",de:"Design & NFC",it:"Design & NFC",fr:"Design & NFC",es:"Diseño & NFC"};
+  const roleTxt = roleMap[currentLang] || roleMap.sq;
+  const orderBtnMap = {sq:"Porosit NFC në WhatsApp", en:"Order NFC on WhatsApp", de:"NFC per WhatsApp bestellen", it:"Ordina NFC su WhatsApp", fr:"Commander NFC sur WhatsApp", es:"Pedir NFC por WhatsApp"};
+  const saveMap = {sq:"Ruaj kontaktin",en:"Save contact",de:"Kontakt speichern",it:"Salva contatto",fr:"Enregistrer le contact",es:"Guardar contacto"};
+  const callMap = {sq:"Telefono",en:"Call",de:"Anrufen",it:"Chiama",fr:"Appeler",es:"Llamar"};
+  const webMap = {sq:"Krijim web faqesh",en:"Website build",de:"Webseite erstellen",it:"Crea sito web",fr:"Créer un site",es:"Crear sitio web"};
+  const seeWorkMap = {sq:"Shiko punët",en:"See the work",de:"Arbeiten ansehen",it:"Vedi i lavori",fr:"Voir les travaux",es:"Ver trabajos"};
+  const reviewMap = {sq:"Vlerëso në Google",en:"Review on Google",de:"Auf Google bewerten",it:"Recensisci su Google",fr:"Évaluer sur Google",es:"Reseñar en Google"};
+  const menuMap = {sq:"Menuja",en:"Menu",de:"Speisekarte",it:"Menu",fr:"Menu",es:"Menú"};
+  const coffeeMap = {sq:"Kafe",en:"Coffee",de:"Kaffee",it:"Caffè",fr:"Café",es:"Café"};
+  const foodMap = {sq:"Ushqim",en:"Food",de:"Essen",it:"Cibo",fr:"Nourriture",es:"Comida"};
+  const drinksMap = {sq:"Pije",en:"Drinks",de:"Getränke",it:"Bevande",fr:"Boissons",es:"Bebidas"};
+  const lemonMap = {sq:"Limonadë",en:"Lemonade",de:"Limonade",it:"Limonata",fr:"Limonade",es:"Limonada"};
+  const waterMap = {sq:"Ujë",en:"Water",de:"Wasser",it:"Acqua",fr:"Eau",es:"Agua"};
+  const reviewMsgMap = {
+    sq:"Na lër një vlerësim. Merr vetëm një minutë.",
+    en:"Leave us a review. Takes just a minute.",
+    de:"Bewerten Sie uns. Dauert nur eine Minute.",
+    it:"Lasciaci una recensione. Ci vuole un minuto.",
+    fr:"Laissez-nous un avis. Une minute suffit.",
+    es:"Déjanos una reseña. Solo un minuto."
+  };
+  const pageTitleMap = {
+    sq:"Faqja e biznesit",en:"Business page",de:"Firmenseite",it:"Pagina aziendale",fr:"Page professionnelle",es:"Página del negocio"
+  };
+  const pageRoleMap = {
+    sq:"Hapet direkt në shfletues",en:"Opens in the browser",de:"Öffnet im Browser",
+    it:"Si apre nel browser",fr:"S'ouvre dans le navigateur",es:"Se abre en el navegador"
+  };
+  const pageSubMap = {
+    sq:"Çdo link që zgjedh: faqe, katalog, dyqan online ose portfolio.",
+    en:"Any link you choose: page, catalog, online store or portfolio.",
+    de:"Jeder Link: Seite, Katalog, Shop oder Portfolio.",
+    it:"Qualsiasi link: pagina, catalogo, negozio o portfolio.",
+    fr:"N'importe quel lien : page, catalogue, boutique ou portfolio.",
+    es:"Cualquier enlace: página, catálogo, tienda o portfolio."
+  };
+  const openMap = {sq:"Hap faqen",en:"Open the page",de:"Seite öffnen",it:"Apri la pagina",fr:"Ouvrir la page",es:"Abrir página"};
+  const seeProdMap = {sq:"Shiko produktet",en:"See products",de:"Produkte ansehen",it:"Vedi prodotti",fr:"Voir les produits",es:"Ver productos"};
+
   return {
     card: `
       <div class="avatar">CN</div>
       <h3>Creative Studio</h3>
-      <div class="role">${L.role}</div>
-      <a class="pbtn primary" href="${waLink(t('wa_demo_order'))}" target="_blank" rel="noopener">${ICONS.chat} ${L.order}</a>
-      <button class="pbtn" id="saveVcf" type="button">${ICONS.user} ${L.save}</button>
-      <a class="pbtn" href="tel:+38346300701">${ICONS.phone} ${L.call}</a>
-      <a class="pbtn" href="${waLink(t('wa_web'))}" target="_blank" rel="noopener">${ICONS.globe} ${L.web}</a>
-      ${INSTAGRAM ? `<a class="pbtn" href="https://ig.me/m/${INSTAGRAM}" target="_blank" rel="noopener">${ICONS.chat} Instagram chat</a>
-        <a class="pbtn" href="https://instagram.com/${INSTAGRAM}" target="_blank" rel="noopener">${ICONS.instagram} ${L.works}</a>` : ''}
-      ${GMAIL ? `<a class="pbtn" href="mailto:${GMAIL}">${ICONS.mail} Gmail</a>` : ''}
-      ${GOOGLE_REVIEW_URL ? `<a class="pbtn" href="${GOOGLE_REVIEW_URL}" target="_blank" rel="noopener">${ICONS.star} ${L.review}</a>` : ''}`,
+      <div class="role">${roleTxt}</div>
+      <a class="pbtn primary" href="${waLink(t('wa_demo_order'))}" target="_blank" rel="noopener">${ico.chat} ${orderBtnMap[currentLang] || orderBtnMap.sq}</a>
+      <button class="pbtn" id="saveVcf" type="button">${ico.user} ${saveMap[currentLang] || saveMap.sq}</button>
+      <a class="pbtn" href="tel:+38346300701">${ico.phone} ${callMap[currentLang] || callMap.sq}</a>
+      <a class="pbtn" href="${waLink(t('wa_web'))}" target="_blank" rel="noopener">${ico.globe} ${webMap[currentLang] || webMap.sq}</a>
+      ${INSTAGRAM ? `<a class="pbtn" href="https://ig.me/m/${INSTAGRAM}" target="_blank" rel="noopener">${ico.chat} Instagram chat</a>
+        <a class="pbtn" href="https://instagram.com/${INSTAGRAM}" target="_blank" rel="noopener">${ico.instagram} ${seeWorkMap[currentLang] || seeWorkMap.sq}</a>` : ''}
+      ${GMAIL ? `<a class="pbtn" href="mailto:${GMAIL}">${ico.mail} Gmail</a>` : ''}
+      ${GOOGLE_REVIEW_URL ? `<a class="pbtn" href="${GOOGLE_REVIEW_URL}" target="_blank" rel="noopener">${ico.star} ${reviewMap[currentLang] || reviewMap.sq}</a>` : ''}`,
     menu: `
       <h3 style="margin-bottom:4px">Creative Bar</h3>
-      <div class="role">${L.menuRole}</div>
-      <div class="menu-title">${L.coffee}</div>
+      <div class="role">${menuMap[currentLang] || menuMap.sq}</div>
+      <div class="menu-title">${coffeeMap[currentLang] || coffeeMap.sq}</div>
       <div class="menu-item"><span>Espresso</span><span>0.80 €</span></div>
       <div class="menu-item"><span>Macchiato</span><span>1.00 €</span></div>
-      <div class="menu-title">${L.food}</div>
+      <div class="menu-title">${foodMap[currentLang] || foodMap.sq}</div>
       <div class="menu-item"><span>Pizza Margarita</span><span>5.00 €</span></div>
       <div class="menu-item"><span>Burger</span><span>4.50 €</span></div>
-      <div class="menu-title">${L.drinks}</div>
-      <div class="menu-item"><span>${L.lemonade}</span><span>2.00 €</span></div>
-      <div class="menu-item"><span>${L.water}</span><span>0.50 €</span></div>`,
+      <div class="menu-title">${drinksMap[currentLang] || drinksMap.sq}</div>
+      <div class="menu-item"><span>${lemonMap[currentLang] || lemonMap.sq}</span><span>2.00 €</span></div>
+      <div class="menu-item"><span>${waterMap[currentLang] || waterMap.sq}</span><span>0.50 €</span></div>`,
     review: `
       <div class="avatar star">★</div>
       <h3>Creative Bar</h3>
       <div class="role">Google Maps</div>
       <div class="stars">★★★★★</div>
-      <p class="center">${L.reviewMsg}</p>
-      <a class="pbtn primary" href="${GOOGLE_REVIEW_URL || '#'}" ${GOOGLE_REVIEW_URL ? 'target="_blank" rel="noopener"' : ''} style="justify-content:center">${L.review}</a>`,
+      <p class="center">${reviewMsgMap[currentLang] || reviewMsgMap.sq}</p>
+      <a class="pbtn primary" href="${GOOGLE_REVIEW_URL || '#'}" ${GOOGLE_REVIEW_URL ? 'target="_blank" rel="noopener"' : ''} style="justify-content:center">${reviewMap[currentLang] || reviewMap.sq}</a>`,
     site: `
       <div class="avatar">W</div>
-      <h3>${L.pageTitle}</h3>
-      <div class="role">${L.pageRole}</div>
-      <p class="center">${L.pageCenter}</p>
-      <a class="pbtn primary" href="#demo" style="justify-content:center">${L.pageOpen}</a>
-      <a class="pbtn" href="#porosit" data-goto="porosit" style="justify-content:center">${L.pageProducts}</a>`
+      <h3>${pageTitleMap[currentLang] || pageTitleMap.sq}</h3>
+      <div class="role">${pageRoleMap[currentLang] || pageRoleMap.sq}</div>
+      <p class="center">${pageSubMap[currentLang] || pageSubMap.sq}</p>
+      <a class="pbtn primary" href="#demo" style="justify-content:center">${openMap[currentLang] || openMap.sq}</a>
+      <a class="pbtn" href="#porosit" data-goto="porosit" style="justify-content:center">${seeProdMap[currentLang] || seeProdMap.sq}</a>`
   };
 }
 
@@ -880,15 +909,14 @@ function initDemoPhone() {
 
 /* ============================================================
    ROUTING
-   ============================================================ */
-const PAGES = ['home', 'porosit', 'demo', 'faq'];
+============================================================ */
+const PAGES = ['home','porosit','demo','faq'];
 const DEFAULT_PAGE = 'home';
 
 function getPageFromHash() {
   const raw = (location.hash || '').replace(/^#\/?/, '').split(/[/?]/)[0].toLowerCase();
   return PAGES.includes(raw) ? raw : DEFAULT_PAGE;
 }
-
 function revealCurrentPage(pageName) {
   requestAnimationFrame(() => {
     document.querySelectorAll('.page[data-page="' + pageName + '"] .reveal:not(.in)').forEach(el => {
@@ -897,7 +925,6 @@ function revealCurrentPage(pageName) {
     });
   });
 }
-
 function showPage(name, opts = {}) {
   if (!PAGES.includes(name)) name = DEFAULT_PAGE;
   document.querySelectorAll('.tapov.open').forEach(o => o.classList.remove('open'));
@@ -908,12 +935,9 @@ function showPage(name, opts = {}) {
     a.classList.toggle('active', on);
     if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
-  try {
-    if (history.state?.page !== name) history.pushState({ page: name }, '', '#' + name);
-  } catch (_) { location.hash = name; }
-  if (opts.scrollToTop !== false) {
-    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
-  }
+  try { if (history.state?.page !== name) history.pushState({ page: name }, '', '#' + name); }
+  catch (_) { location.hash = name; }
+  if (opts.scrollToTop !== false) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
   revealCurrentPage(name);
 }
 
@@ -942,7 +966,7 @@ window.addEventListener('popstate', () => showPage(getPageFromHash()));
 
 /* ============================================================
    HEADER LINKS
-   ============================================================ */
+============================================================ */
 function initHeaderLinks() {
   setHref('waTop', waLink(tf('wa_greeting', { brand: BRAND })));
   setHref('waFoot', waLink(tf('wa_greeting', { brand: BRAND })));
@@ -972,14 +996,13 @@ function initHeaderLinks() {
 
 /* ============================================================
    ORDER
-   ============================================================ */
+============================================================ */
 function tierFor(qty) {
   const tiers = PRODUCTS[currentProduct].tiers;
   let te = tiers[0];
   for (const x of tiers) if (qty >= x.q) te = x;
   return te;
 }
-
 function calc() {
   const tiers = PRODUCTS[currentProduct].tiers;
   const min = tiers[0].q;
@@ -998,21 +1021,18 @@ function calc() {
   const ship = sub >= FREE_SHIP_FROM_EUR ? 0 : SHIPPING;
   return { qty, unit, sub, discountAmount, ship, total: sub - discountAmount + ship };
 }
-
 function bumpEl(el) {
   if (!el) return;
   el.classList.remove('bump');
   void el.offsetWidth;
   el.classList.add('bump');
 }
-
 function updatePayCard(total) {
   const card = $('payCard');
   if (!card || !PAYMENT_URL) return;
   const sep = PAYMENT_URL.includes('?') ? '&' : '?';
   card.href = PAYMENT_URL + sep + 'amount=' + total.toFixed(2) + '&currency=EUR';
 }
-
 function renderOrder() {
   const s = calc();
   $('unit').textContent = eur(s.unit);
@@ -1032,6 +1052,17 @@ function renderOrder() {
     }
   }
 
+  const subtotalLine = $('subtotalLine');
+  if (subtotalLine) {
+    if (s.discountAmount > 0 && appliedDiscount) {
+      subtotalLine.hidden = false;
+      const subtotalEl = $('subtotal');
+      if (subtotalEl) subtotalEl.textContent = eur(s.sub + s.ship);
+    } else {
+      subtotalLine.hidden = true;
+    }
+  }
+
   const payTotal = $('payTotal');
   if (payTotal) payTotal.textContent = eur(s.total);
   updatePayCard(s.total);
@@ -1046,19 +1077,16 @@ function renderOrder() {
   $('modalSummary').textContent = `${s.qty} ${t(PRODUCTS[currentProduct].nameKey)} • ${t('order_msg_total')} ${eur(s.total)}${s.ship ? '' : ' • ' + t('line_free')}${discSummary}`;
   return s;
 }
-
 function animateQtyChange(oldVal, newVal) {
   if (oldVal === newVal) return;
   const input = $('qtyInput');
   if (!input) return;
   const delta = newVal - oldVal;
   const isUp = delta > 0;
-
   input.classList.remove('pop-up', 'pop-down');
   void input.offsetWidth;
   input.classList.add(isUp ? 'pop-up' : 'pop-down');
   setTimeout(() => input.classList.remove('pop-up', 'pop-down'), 420);
-
   const field = input.closest('.qty-field') || input.parentElement;
   if (!field) return;
   const float = document.createElement('span');
@@ -1067,7 +1095,6 @@ function animateQtyChange(oldVal, newVal) {
   field.appendChild(float);
   setTimeout(() => float.remove(), 900);
 }
-
 function bumpQty(delta) {
   const input = $('qtyInput');
   const oldVal = parseInt(input.value, 10) || 1;
@@ -1076,7 +1103,6 @@ function bumpQty(delta) {
   const newVal = parseInt(input.value, 10) || 1;
   animateQtyChange(oldVal, newVal);
 }
-
 function renderTiers() {
   const host = $('tiers');
   if (!host) return;
@@ -1100,9 +1126,7 @@ function renderTiers() {
       animateQtyChange(oldVal, tier.q);
     };
     d.addEventListener('click', pick);
-    d.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
-    });
+    d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
     host.appendChild(d);
   });
   $('qtyInput').value = PRODUCTS[currentProduct].tiers[1].q;
@@ -1111,7 +1135,7 @@ function renderTiers() {
 
 /* ============================================================
    DISCOUNT UI
-   ============================================================ */
+============================================================ */
 function initDiscount() {
   const input = $('discountInput');
   const box = $('discountBox');
@@ -1134,11 +1158,13 @@ function initDiscount() {
       toast('error', t('toast_invalid_title'), tf('toast_invalid_msg', { code }));
       return;
     }
+
     if (isExpired(discount)) {
       shakeInput();
       toast('warning', t('toast_expired_title'), tf('toast_expired_msg', { code, date: formatDate(discount.expires) }));
       return;
     }
+
     const remaining = getCooldownRemaining(code);
     if (remaining > 0) {
       shakeInput();
@@ -1164,6 +1190,7 @@ function initDiscount() {
       box.appendChild(floatEl);
       setTimeout(() => floatEl.remove(), 1150);
     }
+
     toast('success', t('toast_applied_title'), tf('toast_applied_msg', { label: getDiscountLabel(discount) }));
   }
 
@@ -1184,9 +1211,6 @@ function initDiscount() {
   input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); apply(); } });
 }
 
-/* ============================================================
-   PAYMENT
-   ============================================================ */
 function initPayment() {
   if (PAYMENT_URL) {
     const c = $('payCard');
@@ -1194,10 +1218,8 @@ function initPayment() {
     updatePayCard(calc().total);
   }
   if (BANK_IBAN) {
-    const b = $('payBank');
-    if (b) b.hidden = false;
-    const ibanEl = $('payIban');
-    if (ibanEl) ibanEl.textContent = BANK_IBAN;
+    const b = $('payBank'); if (b) b.hidden = false;
+    const ibanEl = $('payIban'); if (ibanEl) ibanEl.textContent = BANK_IBAN;
   }
   const copyBtn = $('payCopy');
   if (copyBtn) {
@@ -1214,9 +1236,6 @@ function initPayment() {
   }
 }
 
-/* ============================================================
-   ORDER INIT
-   ============================================================ */
 function initOrder() {
   document.querySelectorAll('.ptab').forEach(b => {
     b.addEventListener('click', () => {
@@ -1230,9 +1249,7 @@ function initOrder() {
   $('minus').addEventListener('click', () => bumpQty(-1));
   $('plus').addEventListener('click', () => bumpQty(1));
   $('qtyInput').addEventListener('change', renderOrder);
-  $('qtyInput').addEventListener('input', () => {
-    if (parseInt($('qtyInput').value, 10) > 0) renderOrder();
-  });
+  $('qtyInput').addEventListener('input', () => { if (parseInt($('qtyInput').value, 10) > 0) renderOrder(); });
 
   function renderActions() {
     const checks = $('checks');
@@ -1247,15 +1264,8 @@ function initOrder() {
   renderActions();
   window.__renderActions = renderActions;
 
-  const openModal = () => {
-    renderOrder();
-    $('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  };
-  const closeModal = () => {
-    $('modal').classList.remove('open');
-    document.body.style.overflow = '';
-  };
+  const openModal = () => { renderOrder(); $('modal').classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const closeModal = () => { $('modal').classList.remove('open'); document.body.style.overflow = ''; };
   $('openOrder').addEventListener('click', openModal);
   $('closeModal').addEventListener('click', closeModal);
   $('modal').addEventListener('click', e => { if (e.target === $('modal')) closeModal(); });
@@ -1280,7 +1290,6 @@ ${t('order_msg_name')}: ${$('name').value}
 ${t('order_msg_phone')}: ${$('orderPhone').value}
 ${t('order_msg_addr')}: ${$('addr').value}
 ${t('order_msg_client')}: ${$('note').value || '-'}`;
-
     if (appliedDiscount) markCodeUsed(appliedDiscount.code);
     sendOrder(msg);
     closeModal();
@@ -1293,7 +1302,7 @@ ${t('order_msg_client')}: ${$('note').value || '-'}`;
 
 /* ============================================================
    WORK CAROUSEL
-   ============================================================ */
+============================================================ */
 function initWorkCarousel() {
   const PROJECTS = [
     { name:"Creative Bar", type:{sq:"Menu online për kafene",en:"Menu for cafés",de:"Speisekarte für Cafés",it:"Menu per caffè",fr:"Menu pour cafés",es:"Menú para cafeterías"}, desc:{sq:"Menu që hapet me një prekje në kartelën NFC.",en:"Menu that opens with a tap on the NFC card.",de:"Speisekarte, die sich mit einem Tipp öffnet.",it:"Menu che si apre con un tocco.",fr:"Menu qui s'ouvre d'une touche.",es:"Menú que se abre con un toque."}, c1:"#2fe0b0", c2:"#0a0d14", kind:"menu" },
@@ -1302,7 +1311,6 @@ function initWorkCarousel() {
     { name:"Portfolio", type:{sq:"Portfolio personal",en:"Personal portfolio",de:"Portfolio",it:"Portfolio",fr:"Portfolio",es:"Portfolio"}, desc:{sq:"Galeri punësh me animacione dhe formular kontakti.",en:"Work gallery with animations and contact form.",de:"Galerie mit Animationen und Kontaktformular.",it:"Galleria con animazioni e modulo contatti.",fr:"Galerie avec animations et formulaire de contact.",es:"Galería con animaciones y formulario de contacto."}, c1:"#ffb61e", c2:"#14110a", kind:"portfolio" },
     { name:"Faqe shërbimesh", type:{sq:"Faqe për biznes",en:"Business page",de:"Firmenseite",it:"Pagina aziendale",fr:"Page d'entreprise",es:"Página de negocio"}, desc:{sq:"Shërbimet, çmimet dhe kontakti në një faqe të vetme.",en:"Services, prices and contact on one page.",de:"Dienstleistungen, Preise und Kontakt auf einer Seite.",it:"Servizi, prezzi e contatti in una pagina.",fr:"Services, tarifs et contact sur une page.",es:"Servicios, precios y contacto en una página."}, c1:"#b07bff", c2:"#100b1a", kind:"biz" }
   ];
-
   const N = PROJECTS.length, step = 360 / N;
   const show = $('show'), ring = $('ring');
   if (!show || !ring) return;
@@ -1356,8 +1364,7 @@ function initWorkCarousel() {
         ang += (target - ang) * 0.12;
         if (Math.abs(target - ang) < .05) { ang = target; target = null; }
       } else if (Math.abs(vel) > .05) {
-        ang += vel;
-        vel *= .94;
+        ang += vel; vel *= .94;
         if (Math.abs(vel) <= .05) target = Math.round(ang / step) * step;
       } else if (!reduce && !hover && now > idleUntil) {
         ang -= .12;
@@ -1385,10 +1392,7 @@ function initWorkCarousel() {
 
   show.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hover = true; });
   show.addEventListener('pointerleave', () => { hover = false; });
-  show.addEventListener('pointerdown', e => {
-    drag = true; moved = false; lx = sx = e.clientX; vel = 0; target = null;
-    try { show.setPointerCapture(e.pointerId); } catch (_) {}
-  });
+  show.addEventListener('pointerdown', e => { drag = true; moved = false; lx = sx = e.clientX; vel = 0; target = null; try { show.setPointerCapture(e.pointerId); } catch (_) {} });
   show.addEventListener('pointermove', e => {
     if (!drag) return;
     const dx = e.clientX - lx;
@@ -1415,13 +1419,8 @@ function initWorkCarousel() {
   $('pjPrev').addEventListener('click', () => go(1));
 }
 
-/* ============================================================
-   WEB FORM
-   ============================================================ */
 function initWebForm() {
-  const form = $('webForm');
-  if (!form) return;
-  form.addEventListener('submit', e => {
+  $('webForm').addEventListener('submit', e => {
     e.preventDefault();
     const msg =
 `${t('form_title')} - ${BRAND}
@@ -1438,7 +1437,7 @@ ${t('form_phone')}: ${$('wphone').value}`;
 
 /* ============================================================
    3D CARD
-   ============================================================ */
+============================================================ */
 function init3DCard() {
   const scene = $('scene'), rig = $('rig'), bump = $('bump'), ripple = $('ripple');
   if (!scene || !rig) return;
@@ -1457,7 +1456,8 @@ function init3DCard() {
   requestAnimationFrame(frame);
 
   scene.addEventListener('pointerdown', e => {
-    drag = true; moved = false; lx = sx = e.clientX; ly = sy = e.clientY; vx = vy = 0;
+    drag = true; moved = false;
+    lx = sx = e.clientX; ly = sy = e.clientY; vx = vy = 0;
     try { scene.setPointerCapture(e.pointerId); } catch (_) {}
   });
   scene.addEventListener('pointermove', e => {
@@ -1470,9 +1470,7 @@ function init3DCard() {
   });
   scene.addEventListener('pointerup', () => { drag = false; if (!moved) doTap(); });
   scene.addEventListener('pointercancel', () => { drag = false; });
-  scene.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doTap(); }
-  });
+  scene.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doTap(); } });
 
   const ov = document.createElement('div');
   ov.className = 'tapov';
@@ -1487,24 +1485,24 @@ function init3DCard() {
   function refreshOverlay() {
     const views = buildViews();
     ov.querySelector('.phone').innerHTML = views.card.replace('id="saveVcf"', 'data-vcf="1"');
-    const capTexts = {
-      sq: 'Kështu hapet faqja kur klienti prek kartelën.',
-      en: 'This is how the page opens when the customer taps the card.',
-      de: 'So öffnet sich die Seite, wenn der Kunde die Karte antippt.',
-      it: 'Ecco come si apre la pagina quando il cliente tocca la tessera.',
-      fr: "Voici comment la page s'ouvre quand le client touche la carte.",
-      es: 'Así se abre la página cuando el cliente toca la tarjeta.'
-    };
-    const btnTexts = {
-      sq: 'Shiko pakot dhe çmimet',
-      en: 'See packages and prices',
-      de: 'Pakete und Preise ansehen',
-      it: 'Vedi pacchetti e prezzi',
-      fr: 'Voir les forfaits et prix',
-      es: 'Ver paquetes y precios'
-    };
-    ov.querySelector('.tapcap').textContent = capTexts[currentLang] || capTexts.sq;
-    ov.querySelector('.btn-ghost').textContent = btnTexts[currentLang] || btnTexts.sq;
+    const capText = {
+      en:'This is how the page opens when the customer taps the card.',
+      de:'So öffnet sich die Seite, wenn der Kunde die Karte antippt.',
+      it:'Ecco come si apre la pagina quando il cliente tocca la tessera.',
+      fr:"Voici comment la page s'ouvre quand le client touche la carte.",
+      es:'Así se abre la página cuando el cliente toca la tarjeta.',
+      sq:'Kështu hapet faqja kur klienti prek kartelën.'
+    }[currentLang] || 'Kështu hapet faqja kur klienti prek kartelën.';
+    const btnText = {
+      en:'See packages and prices',
+      de:'Pakete und Preise ansehen',
+      it:'Vedi pacchetti e prezzi',
+      fr:'Voir les forfaits et prix',
+      es:'Ver paquetes y precios',
+      sq:'Shiko pakot dhe çmimet'
+    }[currentLang] || 'Shiko pakot dhe çmimet';
+    ov.querySelector('.tapcap').textContent = capText;
+    ov.querySelector('.btn-ghost').textContent = btnText;
   }
   refreshOverlay();
   window.__refreshOverlay = refreshOverlay;
@@ -1519,16 +1517,13 @@ function init3DCard() {
   function doTap() {
     if (bump) { bump.classList.remove('go'); void bump.offsetWidth; bump.classList.add('go'); }
     if (ripple) { ripple.classList.remove('go'); void ripple.offsetWidth; ripple.classList.add('go'); }
-    setTimeout(() => {
-      ov.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }, reduce ? 0 : 650);
+    setTimeout(() => { ov.classList.add('open'); document.body.style.overflow = 'hidden'; }, reduce ? 0 : 650);
   }
 }
 
 /* ============================================================
    LANGUAGE + THEME
-   ============================================================ */
+============================================================ */
 function applyLanguage(lang) {
   if (!T[lang]) lang = 'sq';
   currentLang = lang;
@@ -1536,12 +1531,12 @@ function applyLanguage(lang) {
   document.documentElement.setAttribute('lang', lang);
 
   const titleMap = {
-    sq: 'Creative NFC — Kartela dhe stikerë NFC',
-    en: 'Creative NFC — NFC cards and stickers',
-    de: 'Creative NFC — NFC-Karten und Aufkleber',
-    it: 'Creative NFC — Tessere e adesivi NFC',
-    fr: 'Creative NFC — Cartes et stickers NFC',
-    es: 'Creative NFC — Tarjetas y stickers NFC'
+    sq:'Creative NFC — Kartela dhe stikerë NFC',
+    en:'Creative NFC — NFC cards and stickers',
+    de:'Creative NFC — NFC-Karten und Aufkleber',
+    it:'Creative NFC — Tessere e adesivi NFC',
+    fr:'Creative NFC — Cartes et stickers NFC',
+    es:'Creative NFC — Tarjetas y stickers NFC'
   };
   document.title = titleMap[lang] || titleMap.sq;
 
@@ -1551,7 +1546,6 @@ function applyLanguage(lang) {
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));
   });
-
   const label = $('langLabel');
   if (label) label.textContent = lang.toUpperCase();
   document.querySelectorAll('.lang-option').forEach(opt => {
@@ -1568,10 +1562,10 @@ function applyLanguage(lang) {
   if (window.__refreshCarouselCaption) window.__refreshCarouselCaption();
   if (window.__refreshOverlay) window.__refreshOverlay();
 
-  const minusLabels = { sq:'Zvogëlo', en:'Decrease', de:'Verringern', it:'Riduci', fr:'Diminuer', es:'Disminuir' };
-  const plusLabels = { sq:'Rrit', en:'Increase', de:'Erhöhen', it:'Aumenta', fr:'Augmenter', es:'Aumentar' };
-  const minus = $('minus'); if (minus) minus.setAttribute('aria-label', minusLabels[lang] || minusLabels.sq);
-  const plus = $('plus'); if (plus) plus.setAttribute('aria-label', plusLabels[lang] || plusLabels.sq);
+  const minus = $('minus');
+  if (minus) minus.setAttribute('aria-label', lang === 'en' ? 'Decrease' : lang === 'de' ? 'Verringern' : lang === 'it' ? 'Riduci' : lang === 'fr' ? 'Diminuer' : lang === 'es' ? 'Disminuir' : 'Zvogëlo');
+  const plus = $('plus');
+  if (plus) plus.setAttribute('aria-label', lang === 'en' ? 'Increase' : lang === 'de' ? 'Erhöhen' : lang === 'it' ? 'Aumenta' : lang === 'fr' ? 'Augmenter' : lang === 'es' ? 'Aumentar' : 'Rrit');
 }
 
 function applyTheme(theme) {
@@ -1584,7 +1578,7 @@ function applyTheme(theme) {
 
 /* ============================================================
    LOADER
-   ============================================================ */
+============================================================ */
 function initLoader() {
   const loader = $('loader');
   if (!loader) return;
@@ -1601,13 +1595,11 @@ function initLoader() {
     else setTimeout(() => loader.classList.add('done'), 380);
   };
   setTimeout(tick, 180);
-  // Safety: hide after 5s even if the tick chain breaks
-  setTimeout(() => { if (!loader.classList.contains('done')) loader.classList.add('done'); }, 5000);
 }
 
 /* ============================================================
    SCROLL REVEAL
-   ============================================================ */
+============================================================ */
 function initScrollReveal() {
   if (!('IntersectionObserver' in window)) return;
   const selectors = '.section-head, .use, .step, .price-box, .tiers, .phone, .webform, .contact-card, .cta-inner, .demo-text, .show, .faq > div, .pay-card';
@@ -1625,18 +1617,15 @@ function initScrollReveal() {
   });
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 }
 
 /* ============================================================
-   BUTTON EFFECTS
-   ============================================================ */
+   BUTTON FX
+============================================================ */
 function initButtonFX() {
   document.querySelectorAll('.btn, .qtyctl, .arw, .tab, .ptab, .tier, .pay-cta, .icon-btn').forEach(btn => {
     btn.addEventListener('pointermove', e => {
@@ -1660,8 +1649,8 @@ function initButtonFX() {
 }
 
 /* ============================================================
-   TOGGLES (theme + language dropdown)
-   ============================================================ */
+   TOGGLES
+============================================================ */
 function initToggles() {
   const themeBtn = $('themeToggle');
   if (themeBtn) {
@@ -1696,7 +1685,8 @@ function initToggles() {
   langMenu.querySelectorAll('.lang-option').forEach(opt => {
     opt.addEventListener('click', e => {
       e.stopPropagation();
-      applyLanguage(opt.dataset.lang);
+      const lang = opt.dataset.lang;
+      applyLanguage(lang);
       setMenu(false);
     });
   });
@@ -1711,7 +1701,7 @@ function initToggles() {
 
 /* ============================================================
    MOBILE MENU
-   ============================================================ */
+============================================================ */
 function initMobileMenu() {
   const navToggle = $('navToggle');
   if (!navToggle) return;
@@ -1720,17 +1710,12 @@ function initMobileMenu() {
     header.classList.toggle('menu-open', open);
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   };
-  navToggle.addEventListener('click', e => {
-    e.stopPropagation();
-    setMenu(!header.classList.contains('menu-open'));
-  });
-  header.querySelectorAll('.links a').forEach(a => {
-    a.addEventListener('click', () => setMenu(false));
-  });
-  document.addEventListener('click', e => {
+  navToggle.addEventListener('click', (e) => { e.stopPropagation(); setMenu(!header.classList.contains('menu-open')); });
+  header.querySelectorAll('.links a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('click', (e) => {
     if (header.classList.contains('menu-open') && !header.contains(e.target)) setMenu(false);
   });
-  document.addEventListener('keydown', e => {
+  document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && header.classList.contains('menu-open')) setMenu(false);
   });
   window.addEventListener('resize', () => {
@@ -1740,7 +1725,7 @@ function initMobileMenu() {
 
 /* ============================================================
    BOOT
-   ============================================================ */
+============================================================ */
 function boot() {
   if (boot._ran) return;
   boot._ran = true;
